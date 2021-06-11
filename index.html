@@ -45,21 +45,28 @@
         var ctx = document.getElementById('myChart').getContext('2d');
         Chart.defaults.font.size = 20;
 
-        const chart = new Chart(ctx, {
-            type: 'scatter',
-            data: {
-                datasets: [{
-                    label: 'Scatter Dataset',
-                    data: [{
-                        x: 0,
-                        y: 0
-                    }, {
-                        x: 2,
-                        y: 0
-                    }],
-                    backgroundColor: 'rgb(25, 99, 132)'
+        var data = {
+            datasets: [{
+                label: 'Scatter Dataset',
+                data: [{
+                    x: 0,
+                    y: 0
+                }, {
+                    x: 2,
+                    y: 0
                 }],
-            },
+                pointRadius: 5,
+
+                pointStyle: 'rect',
+
+                backgroundColor: 'rgb(25, 99, 132)'
+            }],
+        }
+
+        var chart = new Chart(ctx, {
+            type: 'scatter',
+            data: data,
+
 
 
             options: {
@@ -69,14 +76,48 @@
                     // Substitute the appropriate scale IDs
                     const dataX = chart.scales.x.getValueForPixel(canvasPosition.x);
                     const dataY = chart.scales.y.getValueForPixel(canvasPosition.y);
-                    console.log(dataX, dataY);
-                }
+                    data["datasets"][0]["data"].push({ x: dataX, y: dataY });
+                    console.log(data["datasets"][0]["data"]);
+                    chart.update('none');
+                },
+
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Click on the Graph to make points',
+                    },
+                    legend: {
+                        labels: {
+                            usePointStyle: true,
+
+                        }
+                    }
+                },
+
+                scales: {
+                    x:{
+                        max:100,
+                    },
+                    y:{
+                        max:100,
+                    }
+
+
+                },
+
+
+
             },
             scales: {
+
                 x: {
                     type: 'linear',
+                    max: 70,
                     position: 'bottom'
-                }
+                },
+                y: {
+                    max: 50,
+                },
             }
         });
     </script>
