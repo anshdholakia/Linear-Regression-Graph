@@ -1,0 +1,23 @@
+{
+  "name": "linear-regression-graph",
+  "version": "1.0.0",
+  "description": "Making a real-time linear regression line on graph",
+  "main": "index.js",
+  "dependencies": {
+    "chart.js": "^3.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anshdholakia/Linear-Regression-Graph.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anshdholakia/Linear-Regression-Graph/issues"
+  },
+  "homepage": "https://github.com/anshdholakia/Linear-Regression-Graph#readme"
+}
