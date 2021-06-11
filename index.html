@@ -45,12 +45,23 @@
         var ctx = document.getElementById('myChart').getContext('2d');
         Chart.defaults.font.size = 20;
 
+        document.getElementById("myChart").addEventListener("mousedown", () => {
+            var X = event.clientX;     // Get the horizontal coordinate
+            var Y = event.clientY;     // Get the vertical coordinate
+            X = ((X - 72) * 100)/ 712;
+            Y = ((Y - 466) * 100)/ -310;
+            console.log(X, Y);
+            data["datasets"][0]["data"].push({ x: X, y: Y});
+            chart.update("none");
+
+        })
+
         var data = {
             datasets: [{
                 label: 'Scatter Dataset',
                 data: [{
-                    x: 0,
-                    y: 0
+                    x: 2,
+                    y: 4,
                 }, {
                     x: 2,
                     y: 0
@@ -69,16 +80,16 @@
 
 
 
+
             options: {
                 onClick: (e) => {
                     const canvasPosition = Chart.helpers.getRelativePosition(e, chart);
 
-                    // Substitute the appropriate scale IDs
                     const dataX = chart.scales.x.getValueForPixel(canvasPosition.x);
                     const dataY = chart.scales.y.getValueForPixel(canvasPosition.y);
-                    data["datasets"][0]["data"].push({ x: dataX, y: dataY });
-                    console.log(data["datasets"][0]["data"]);
-                    chart.update('none');
+                    // data["datasets"][0]["data"].push({ x: dataX, y: dataY });
+                    console.log(dataX, dataY);
+                    // chart.update('none');
                 },
 
                 plugins: {
@@ -95,11 +106,13 @@
                 },
 
                 scales: {
-                    x:{
-                        max:100,
+                    x: {
+                        max: 100,
+                        min: 0,
                     },
-                    y:{
-                        max:100,
+                    y: {
+                        max: 100,
+                        min: 0,
                     }
 
 
