@@ -4,7 +4,8 @@
   "description": "Making a real-time linear regression line on graph",
   "main": "index.js",
   "dependencies": {
-    "chart.js": "^3.3.2"
+    "chart.js": "^3.3.2",
+    "jquery": "^3.6.0"
   },
   "devDependencies": {},
   "scripts": {
