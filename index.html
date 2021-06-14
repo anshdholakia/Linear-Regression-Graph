@@ -103,10 +103,33 @@
                 relY = e.pageY - parentOffset.top;
                 xValue = Math.round(chart.axisX[0].convertPixelToValue(relX));
                 yValue = Math.round(chart.axisY[0].convertPixelToValue(relY));
-                chart.data[0].dataPoints.push({
-                    x: xValue,
-                    y: yValue
-                });
+                if (chart.data[0].dataPoints.some(e => e.x == xValue) && chart.data[0].dataPoints.some(e => e.y == yValue)) {
+                    if (chart.data[0].dataPoints.length > 2) {
+                        for (var i = 0; i < chart.data[0].dataPoints.length; i++) {
+                            if (chart.data[0].dataPoints[i]['x'] == xValue && chart.data[0].dataPoints[i]['y'] == yValue) {
+                                chart.data[0].dataPoints.splice(i, 1);
+                            }
+
+                        }
+
+                    }
+
+                }
+
+                else {
+                    chart.data[0].dataPoints.push({
+                        x: xValue,
+                        y: yValue
+                    });
+
+                    console.log(chart.data[0].dataPoints);
+
+                }
+
+
+
+
+
 
                 updating();
 
@@ -149,8 +172,8 @@
         }
 
         var dps = [
-            { x: 0, y: 0},
-            { x: 120, y: 0},
+            { x: 0, y: 0 },
+            { x: 120, y: 0 },
         ]
 
         chart.addTo("data", { type: "line", yValueFormatString: "0.##\"\"", dataPoints: dps, color: "red" });
